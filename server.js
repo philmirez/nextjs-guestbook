@@ -9,7 +9,7 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express()
-  const entries = []
+
   server.use(bodyParser.urlencoded({ extended: true }))
   server.use(bodyParser.json())
 
