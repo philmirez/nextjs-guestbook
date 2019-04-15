@@ -18,4 +18,4 @@ Feel free to add the following
 1. Add some UI/UX features
 2. Unit tests (coverage)
 3. Code linting 
-   - note: `standard --parser babel-eslint` works via cli but not via `npm run lint` :/
+   - note: `standard --parser babel-eslint` works via cli but not via `npm run lint` :/ (this might be linux/pop!_os related... both standard and babel-eslint are installed 'locally' and not globally on my linux machine though... which is the same setup as my windows machine)

@@ -6,11 +6,14 @@
   "scripts": {
     "build": "next build",
     "dev": "npm run format && cross-env NODE_ENV=development npm start",
-    "format": "prettier-standard \"{components,pages,tests}/**/*.js\"",
-    "lint": "standard --parser babel-eslint",
+    "format": "prettier-standard \"{app,components,pages,tests}/**/*.js\"",
+    "lint": "standard",
     "precommit": "lint-staged",
     "start": "node ./server",
     "test": "prettier-standard && node test/test.js"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "lint-staged": {
     "linters": {

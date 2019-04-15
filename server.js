@@ -2,6 +2,7 @@ const express = require('express')
 const next = require('next')
 const bodyParser = require('body-parser')
 const config = require('./config')
+const guestBookCtrl = require('./app/controllers/guestbook')
 
 const app = next({ dev: config.dev })
 const handle = app.getRequestHandler()
@@ -12,21 +13,9 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: true }))
   server.use(bodyParser.json())
 
-  server.post('/api/guestbook', (req, res, next) => {
-    console.log('route hit!')
-    console.log(req.body)
-    const { guestName, guestMessage } = req.body
-    const success = `${guestName} sucessfully posted to the Guestbook!`
-    entries.push({ id: entries.length, guestName, guestMessage })
-    console.log(entries)
-    res.send(success)
-  })
-
-  server.get('/api/guestbook', (req, res, next) => {
-    res.json({
-      entries
-    })
-  })
+  server.route('/api/guestbook')
+    .post((req, res, next) => guestBookCtrl.add(req, res))
+    .get((req, res, next) => guestBookCtrl.get(req, res))
 
   server.get('*', (req, res) => {
     return handle(req, res)

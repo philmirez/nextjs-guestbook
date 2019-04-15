@@ -9,6 +9,7 @@ module.exports = {
     config._addAlias('components')
     config._addAlias('config')
     config._addAlias('helpers')
+    config._addAlias('app')
 
     delete config._addAlias
 

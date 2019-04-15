@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import fetch from 'isomorphic-unfetch'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import TextField from '@material-ui/core/TextField'
@@ -10,7 +11,9 @@ class EntryForm extends Component {
     super(props)
     this.state = {
       guestName: '',
-      guestMessage: ''
+      guestMessage: '',
+      validResponse: true,
+      validForm: true
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,8 +32,7 @@ class EntryForm extends Component {
 
     if (!event.target.checkValidity()) {
       this.setState({
-        invalid: true,
-        displayErrors: true
+        validForm: false
       })
       return
     }
@@ -41,8 +43,8 @@ class EntryForm extends Component {
     })
 
     this.setState({
-      invalid: false,
-      displayErrors: false
+      validForm: true,
+      validResponse: true
     })
 
     try {
@@ -56,7 +58,11 @@ class EntryForm extends Component {
       })
 
       if (!response.ok) {
-        // TODO notify response error (internal server error... invalid argument...)
+        this.setState({
+          validResponse: false
+        })
+
+        return
       }
 
       if (response.ok) {
@@ -72,7 +78,7 @@ class EntryForm extends Component {
   }
 
   render () {
-    const { entry, invalid } = this.state
+    const { entry, validForm, validResponse } = this.state
     return (
       <div>
         <form onSubmit={this.handleSubmit} noValidate>
@@ -120,8 +126,14 @@ class EntryForm extends Component {
         </form>
 
         <div>
-          {invalid && <Notify title='Error!' text='Form is not valid' />}
-          {!invalid && entry && (
+          {!validResponse && (
+            <Notify
+              title='Internal Error!'
+              text='Form failed to post the guest book message'
+            />
+          )}
+          {!validForm && <Notify title='Error!' text='Form is not valid' />}
+          {validForm && entry && (
             <Notify title='Good News!' text='Your message was posted!' />
           )}
         </div>
