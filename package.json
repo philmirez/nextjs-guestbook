@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "next build",
-    "dev": "cross-env NODE_ENV=development npm start",
-    "format": "prettier-standard \"{src,pages,app,test}/**/*.js\"",
-    "lint": "standard",
+    "dev": "npm run format && cross-env NODE_ENV=development npm start",
+    "format": "prettier-standard \"{components,pages,tests}/**/*.js\"",
+    "lint": "standard --parser babel-eslint",
     "precommit": "lint-staged",
     "start": "node ./server",
     "test": "prettier-standard && node test/test.js"
@@ -31,12 +31,20 @@
   },
   "homepage": "https://github.com/remedyhealth/nextjs-challenge-boilerplate#readme",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
+    "jss": "^9.8.7",
     "next": "^7.0.2",
+    "prop-types": "^15.7.2",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-jss": "^8.6.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
