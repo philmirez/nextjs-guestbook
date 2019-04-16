@@ -10,7 +10,6 @@ const Page = props => (
 )
 
 Page.propTypes = {
-  title: PropTypes.string.isRequired,
   navPosition: PropTypes.number.isRequired
 }
 

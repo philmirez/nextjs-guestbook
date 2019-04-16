@@ -5,7 +5,7 @@ import * as GuestBook from 'components/guestbook'
 import { Page } from 'components/page'
 
 const GuestBookPage = props => (
-  <Page title='Guest Book' navPosition={1}>
+  <Page navPosition={1}>
     <GuestBook.Entries {...props} />
   </Page>
 )
