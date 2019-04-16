@@ -1,4 +1,4 @@
-const guestBookMemory = require('../adapters/guestbook')
+const guestBookMemory = require('app/adapters/guestbook')
 
 const _writeFailure = (res, message, code) => {
   if (!res.headersSent) {

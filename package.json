@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "dev": "npm run format && cross-env NODE_ENV=development npm start",
-    "format": "prettier-standard \"{app,components,pages,test}/**/*.js\"",
+    "format": "prettier-standard \"{app,components,config,pages,test}/**/*.js\"",
     "lint": "standard",
     "precommit": "lint-staged",
     "start": "node ./server",
@@ -21,7 +21,7 @@
   },
   "lint-staged": {
     "linters": {
-      "{src,pages,app,test}/**/*.js": [
+      "{app,components,config,pages,test}/**/*.js": [
         "prettier-standard",
         "git add"
       ]
